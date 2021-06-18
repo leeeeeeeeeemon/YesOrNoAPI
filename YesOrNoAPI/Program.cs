@@ -6,20 +6,10 @@ using System.Threading;
 
 namespace YesOrNoAPI
 {
-	class Program
-	{
-		static void Main(string[] args)
-		{
-            Console.WriteLine("Ask a question in your head,i will give you time to think");
-            for(int i = 0; i < 10; i++)
-			{
-                Thread.Sleep(400);
-                Console.WriteLine(".");
-            }
-            Console.WriteLine("the clouds say: " + Answer());
-        }
-            
+	public class AnswerApi
 
+	{
+        
         static public string Answer()
         {
             var url = $"https://yesno.wtf/api";
@@ -32,7 +22,7 @@ namespace YesOrNoAPI
             {
                 Console.WriteLine(httpStatusCode);
             }
-
+            
             using (var streamReader = new StreamReader(response.GetResponseStream()))
             {
                 string result = streamReader.ReadToEnd();
