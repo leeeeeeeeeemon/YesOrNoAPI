@@ -12,7 +12,7 @@ namespace TelegramBot
         static void Main(string[] args)
         {
             
-            TelegramBotClient bot = new TelegramBotClient("1863056024:AAHHFPGNbFpcjL5An6C3VB0Ms4nU37O7vew");
+            TelegramBotClient bot = new TelegramBotClient(File.ReadAllText($"../../../token.txt"));
 
             bool askQuestion = false;
 
