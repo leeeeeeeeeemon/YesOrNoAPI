@@ -27,7 +27,7 @@ namespace YesOrNoAPI
             {
                 string result = streamReader.ReadToEnd();
                 var answer = JsonConvert.DeserializeObject<Root>(result);
-                return (answer.answer);
+                return (answer.answer + " " + answer.image);
             }
         }
     }
