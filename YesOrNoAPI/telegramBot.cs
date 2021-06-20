@@ -12,7 +12,7 @@ namespace TelegramBot
         static void Main(string[] args)
         {
             
-            TelegramBotClient bot = new TelegramBotClient(File.ReadAllText($"../../../token.txt"));
+            TelegramBotClient bot = new TelegramBotClient(File.ReadAllText($"../../../token.txt")); /*token hide on my pc*/
 
             bool askQuestion = false;
 
@@ -23,6 +23,7 @@ namespace TelegramBot
                     switch (arg.Message.Text)
                     {
                         case "/start":
+                            addNewUser(Convert.ToString(arg.Message.Chat.Id));
                             Console.WriteLine($"{arg.Message.Chat.FirstName}: {arg.Message.Text}");
                             bot.SendTextMessageAsync(arg.Message.Chat.Id, $"Чуитс, бот был создан хакером под именем lemonjuice");
                             Thread.Sleep(200);
@@ -30,7 +31,7 @@ namespace TelegramBot
                             Thread.Sleep(200);
                             bot.SendTextMessageAsync(arg.Message.Chat.Id, $"Просто напиши слово <Вопрос>");
                             Thread.Sleep(200);
-                            bot.SendDocumentAsync(arg.Message.Chat.Id, "https://media.giphy.com/media/SyemapFxj7TiM/giphy.gif");
+                            bot.SendDocumentAsync(arg.Message.Chat.Id, "https://media.giphy.com/media/SajdfSNg6f8rK/giphy.gif");
                             break;
                         case "вопрос":
                             askQuestion = true;
@@ -65,6 +66,30 @@ namespace TelegramBot
             bot.StartReceiving();
 
             Console.ReadKey();
+        }
+
+        public static void addNewUser(string chatId)
+		{
+            bool alreadyInBot = false;
+            string[] Ips = File.ReadAllLines($"../../../usersIP.txt");
+            StreamWriter sw = new StreamWriter($"../../../usersIP.txt");
+            foreach(var f in Ips){
+                sw.WriteLine(f);
+                if (f == chatId)
+				{
+                    alreadyInBot = true;
+				}
+			}
+			if (!alreadyInBot)
+			{
+                Console.WriteLine($"add new IP in file {chatId}");
+                sw.WriteLine(chatId);
+			}
+			else
+			{
+                Console.WriteLine("user already in BOT");
+			}
+            sw.Close();
         }
     }
 }
