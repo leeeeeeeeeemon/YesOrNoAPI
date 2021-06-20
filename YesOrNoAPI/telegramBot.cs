@@ -56,6 +56,7 @@ namespace TelegramBot
                     Console.WriteLine($"{arg.Message.Chat.FirstName}: {arg.Message.Text}");
                     bot.SendTextMessageAsync(arg.Message.Chat.Id, $"облака говорят: {parseAnswer[0]} ");
                     bot.SendDocumentAsync(arg.Message.Chat.Id, parseAnswer[1]);
+                    Console.WriteLine(parseAnswer[0]);
                     Thread.Sleep(400);
                     bot.SendTextMessageAsync(arg.Message.Chat.Id, $"Для повторного вопроса заново введите команду <Вопрос>");
                 }
